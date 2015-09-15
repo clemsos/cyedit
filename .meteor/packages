@@ -17,3 +17,6 @@ stevezhu:lodash
 d3js:d3
 workman:x-editable-reactive-template
 natestrauser:x-editable-bootstrap
+accounts-password
+iron:router
+ian:accounts-ui-bootstrap-3

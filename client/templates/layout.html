@@ -1,0 +1,11 @@
+ <template name="mainLayout">
+{{> _header}}
+
+<div id="page-wrapper" style="min-height: 561px;">
+    <div class="main-view">
+    {{> yield}}
+    </div>
+</div>
+
+{{> _footer}}
+</template>

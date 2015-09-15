@@ -1,24 +1,18 @@
-Meteor.publish('edges', function() {
-    return Edges.find();
+Meteor.publish('edges', function(networkId) {
+    return Edges.find({'networkId' : networkId});
 });
 
-Meteor.publish('nodes', function() {
-    return Nodes.find();
+Meteor.publish('nodes', function (networkId) {
+    var nodes = Nodes.find({'networkId' : networkId});
+    console.log("networkId", networkId, "nodes : ", nodes.fetch().length);
+    return nodes;
 });
 
 Meteor.publish('comments', function() {
     return Comments.find();
 });
 
-// Meteor.publish('singleItem', function(id,type) {
+Meteor.publish('networks', function() {
+    return Networks.find();
+});
 
-//     var current = "";
-//     if( type == "node") {
-//             current= Nodes.findOne({"data.id" : id});
-//         } else if (type== "edge"){
-//             current= Edges.findOne({"data.id" : id});
-//     }
-
-//     console.log(current);
-//     return current;
-// });

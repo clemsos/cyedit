@@ -1,0 +1,9 @@
+<template name="networks">
+    <h1>Your networks</h1>
+        {{> addNetwork}}
+    <ul>
+        {{#each networks}}
+            <li><a href="/networks/{{_id}}">{{name}}</a></li>
+        {{/each}}
+    </ul>
+</template>

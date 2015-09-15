@@ -1,9 +1,3 @@
-Template.comments.helpers({
-    comments: function() {
-        return comments = Comments.find({"id" : Session.get('currentId'),  "type" : Session.get('currentType')}).fetch();
-    }
-})
-
 Template.commentForm.events = {
     'click #submit': function(e){
 

@@ -15,16 +15,17 @@ function changeLayout (layoutName) {
     layout.run();
 }
 
-Template._header.events = {
+Template.networkTools.events = {
     // add/remove nodes
     "click #add" :  function(){ 
         var nodeId =  'node' + Math.round( Math.random() * 1000000 );
-
         Meteor.call("addNode", nodeId, "New Node") 
     },
 
     // add random nodes 
-    "click #init-data": function(){  Meteor.call("resetNetworkData"); },
+    "click #init-data": function(){
+        Meteor.call("resetNetworkData", this.networkId); 
+    },
 
     // layouts
     'click #colaLayout' : function(){ changeLayout("cola") },
