@@ -4,7 +4,7 @@ Meteor.publish('edges', function(networkId) {
 
 Meteor.publish('nodes', function (networkId) {
     var nodes = Nodes.find({'networkId' : networkId});
-    console.log("networkId", networkId, "nodes : ", nodes.fetch().length);
+    // console.log("networkId", networkId, "nodes : ", nodes.fetch().length);
     return nodes;
 });
 

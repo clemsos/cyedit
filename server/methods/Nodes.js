@@ -26,7 +26,6 @@ Meteor.methods({
 
     updateNodePosition : function(nodeId, position){
         var node = Nodes.findOne({ "data.id" : nodeId });
-        // console.log(node);
         //update coords in DB 
         Nodes.update({
             _id: node._id
