@@ -12,6 +12,8 @@ maxkfranz:cytoscape-qtip
 underscore
 fastclick
 twbs:bootstrap
+aldeed:tabular
+aslagle:reactive-table
 fortawesome:fontawesome
 stevezhu:lodash
 d3js:d3

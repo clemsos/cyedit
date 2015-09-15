@@ -1,9 +1,7 @@
 // networks index
 Template.networks.helpers({
     'networks': function(){
-        var networks = Networks.find({}, {sort: {name: 1}}).fetch();
-        console.log(networks);
-        return networks
+        return networks = Networks.find({}, {sort: {name: 1}}).fetch();
     }
 });
 

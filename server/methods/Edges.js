@@ -8,9 +8,10 @@ Meteor.methods({
                 "target" :targetId,
                 "name" : name
             },
+            networkId : networkId,
             createdAt: new Date(),            // current time
             owner: Meteor.userId(),           // _id of logged in user
-            networkId : networkId
+            username: Meteor.user().username  
         });
     },
 

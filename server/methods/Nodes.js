@@ -15,7 +15,8 @@ Meteor.methods({
             },
             networkId : networkId,
             createdAt: new Date(),            // current time
-            owner: Meteor.userId()           // _id of logged in user
+            owner: Meteor.userId(),           // _id of logged in user
+            username: Meteor.user().username  
         });
     },
 
