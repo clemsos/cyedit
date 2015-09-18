@@ -1,10 +1,12 @@
 <template name="networkTools">
     <ul class="nav navbar-nav">
+        <li><a id="import-data" class="btn btn-primary" href="/networks/{{networkId}}/import"><i class="fa fa-plus fa-fw"></i>Import Data</a></li>
         <li><a class="btn btn-primary" id="add" href="/networks/{{networkId}}/edges">Edges</a></li>
         <li><a class="btn btn-primary" id="add" href="/networks/{{networkId}}/nodes">Nodes</a></li>
         <li role="separator" class="divider"></li>
         <li ><a href="#" id="init-data">Init <i class="fa fa-dashboard fa-fw"></i></a></li>
-        <li><a id="add" href="#"><i class="fa fa-plus fa-fw"></i>Add node</a></li>
+        <li><a id="add-node" href="#"><i class="fa fa-plus fa-fw"></i>Add node</a></li>
+        <li><a id="remove-isolated-nodes" href="#"><i class="fa fa-trash fa-fw"></i>Delete singletons</a></li>
         <!-- <li><a id="draw-edgehandles" href="#">Draw edges</a></li> -->
 
         <li class="dropdown">

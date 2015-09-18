@@ -24,7 +24,7 @@ NetworkGraph = {
                 style: cytoscape.stylesheet()
                 .selector('node')
                     .style({
-                            'content': function( e ){ return e.data("name") },
+                            // 'content': function( e ){ return e.data("name") },
                             'background-color': function( e ){return e.data("starred") ?  "yellow" : self.colors(e.data("group")) },
                             'font-size': 12,
                             'text-valign': 'center',
@@ -37,7 +37,7 @@ NetworkGraph = {
                     })
                 .selector('edge')
                     .style({
-                        'content': function( e ){ return e.data("name")? e.data("name") : "";},
+                        // 'content': function( e ){ return e.data("name")? e.data("name") : "";},
                         'target-arrow-shape': 'triangle',
                     })
                 .selector('.edgehandles-hover')

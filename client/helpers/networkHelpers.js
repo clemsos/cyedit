@@ -5,28 +5,55 @@ Template.networks.helpers({
     }
 });
 
+
 // single network
-Template.network.onCreated(function(){
+Template.network.created = function(){
     var self = this;
     var networkId = this.data.networkId;
-});
+    this.network = new ReactiveVar();
+    this.changeLayout = new ReactiveVar();
+};
 
 
 Template.network.rendered = function () {
     var self = this;
     var networkId = this.data.networkId;
 
+    // set as reactive var
+
     // create graph// network.destroy();
-    this.network  = NetworkGraph.initNetwork(networkId);
+    var network  = NetworkGraph.initNetwork(networkId);
+    Template.instance().network.set(network);
 
     // fetch data
     Tracker.autorun(function(){
         var nodes = Nodes.find().fetch();
         var edges = Edges.find().fetch();
-        // console.log("fetch nodes for ",networkId, "nodes", nodes .length);
-        if(self.network)  self.network.updateNetworkData(nodes,edges);
+        console.log("fetch for ",networkId, nodes .length, "nodes", edges .length, "edges" );
+        // console.log(nodes, edges);
+        if(network)  network.updateNetworkData(nodes,edges);
     });
 
+    // layout function
+    var changeLayout  = function (layoutName) {
+
+        // callback
+        var savePositions = function () {
+            console.log("update position ");
+            //   for (var i = 0; i < net.nodes().length; i++) {
+            //         var node = net.nodes()[i];
+            //         Meteor.call("updateNodePosition", node.id(), node.position())
+            //     }
+            }
+
+            var layout = network.net.makeLayout({ 
+                name: layoutName,
+                stop: savePositions // callback on layoutstop
+            });
+            layout.run();
+        }
+
+        Template.instance().changeLayout.set(changeLayout);
 };
 
 Template.network.onDestroyed(function(){

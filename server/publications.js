@@ -1,5 +1,7 @@
 Meteor.publish('edges', function(networkId) {
-    return Edges.find({'networkId' : networkId});
+    var edges = Edges.find({'networkId' : networkId});
+    console.log(networkId, edges.count());
+    return edges; 
 });
 
 Meteor.publish('nodes', function (networkId) {

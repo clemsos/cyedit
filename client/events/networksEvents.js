@@ -7,6 +7,12 @@ Template.addNetwork.events({
     }
 });
 
+Template.networks.events({
+    'click .remove': function(event){
+        event.preventDefault();
+        Meteor.call("removeNetwork", (this._id));
+    }
+});
 
 Template.contextual.events= {
     'click #closeInfoBox' : function(event){

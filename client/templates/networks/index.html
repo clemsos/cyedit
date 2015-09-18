@@ -3,7 +3,10 @@
         {{> addNetwork}}
     <ul>
         {{#each networks}}
-            <li><a href="/networks/{{_id}}">{{name}}</a></li>
+            <li>
+                <a href="/networks/{{_id}}">{{name}}</a>
+                <a href = "#" class ="remove"> &#10005; </a>
+            </li>
         {{/each}}
     </ul>
 </template>

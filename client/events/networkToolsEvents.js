@@ -1,25 +1,14 @@
-function changeLayout (layoutName) {
-
-    // TODO : make this function smoother for multi clients
-    var savePositions = function () {
-      for (var i = 0; i < net.nodes().length; i++) {
-            var node = net.nodes()[i];
-            Meteor.call("updateNodePosition", node.id(), node.position())
-        }
-    }
-
-    var layout = net.makeLayout({ 
-        name: layoutName,
-        stop: savePositions // callback on layoutstop
-    });
-    layout.run();
-}
+Template.networkTools.onCreated(function(){
+    console.log(this.view.parentView().instance().changeLayout.get());
+});
 
 Template.networkTools.events = {
+
     // add/remove nodes
-    "click #add" :  function(){ 
+    "click #add-node" :  function(){ 
         var nodeId =  'node' + Math.round( Math.random() * 1000000 );
-        Meteor.call("addNode", nodeId, "New Node") 
+        var node = makeNode(nodeId);
+        Meteor.call("addNode", node);
     },
 
     // add random nodes 
@@ -28,7 +17,10 @@ Template.networkTools.events = {
     },
 
     // layouts
-    'click #colaLayout' : function(){ changeLayout("cola") },
+    'click #colaLayout' : function(){ 
+
+        changeLayout("cola");
+    },
     'click #arborLayout' : function(){ changeLayout("cola") },
     'click #randomLayout' : function(){ changeLayout("random") },
     'click #circleLayout' : function(){ changeLayout("circle") },
@@ -45,6 +37,13 @@ Template.networkTools.events = {
         console.log(edgeHandlesOn);
         if (edgeHandlesOn)net.edgehandles.start();
     },
+
+    // degree
+    'click #remove-isolated-nodes' : function() {
+        // var network = Template.instance().network.get().net;
+        var isolated = network.elements("node[[degree = 0]]")
+        network.remove(isolated);
+    }
 
 
 
