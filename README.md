@@ -16,4 +16,4 @@ Read the [specs](https://github.com/cytoscape/cytoscape.js/issues/821#issuecomme
 * history (ctrl+Z)
 * map view (Leaflet)
 * stats graph
-
+* remove arbor layout 
