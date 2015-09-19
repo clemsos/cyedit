@@ -17,11 +17,7 @@ Template.networkTools.events = {
     },
 
     // layouts
-    'click #colaLayout' : function(){ 
-
-        changeLayout("cola");
-    },
-    'click #arborLayout' : function(){ changeLayout("cola") },
+    'click #colaLayout' : function(){ changeLayout("cola"); },
     'click #randomLayout' : function(){ changeLayout("random") },
     'click #circleLayout' : function(){ changeLayout("circle") },
     'click #gridLayout' : function(){ changeLayout("grid") },
