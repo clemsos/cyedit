@@ -1,5 +1,8 @@
 Template.networkTools.onCreated(function(){
-    // console.log(this.view.parentView().instance().changeLayout.get());
+    this.changeLayout = new ReactiveVar();
+
+    // inherit change layout function from parent network view
+    this.changeLayout.set(this.view.parentView._templateInstance.changeLayout.get())
 });
 
 Template.networkTools.events = {
@@ -17,17 +20,31 @@ Template.networkTools.events = {
     },
 
     // layouts
-    'click #colaLayout' : function(){ changeLayout("cola"); },
-    'click #randomLayout' : function(){ changeLayout("random") },
-    'click #circleLayout' : function(){ changeLayout("circle") },
-    'click #gridLayout' : function(){ changeLayout("grid") },
+    'click #colaLayout' : function(e, template){  
+        template.view.parentView._templateInstance.changeLayout.get()("cola"); 
+    },
+    'click #randomLayout' : function(e, template){
+        template.view.parentView._templateInstance.changeLayout.get()("random");
+    },
+    'click #circleLayout' : function(e, template){  
+        template.view.parentView._templateInstance.changeLayout.get()("circle") 
+    },
+    'click #gridLayout' : function(e, template){  
+        template.view.parentView._templateInstance.changeLayout.get()("grid") 
+    },
+    'click #breadthfirstLayout' : function(e, template){  
+        template.view.parentView._templateInstance.changeLayout.get()("breadthfirst") 
+    },
+    'click #concentricLayout' : function(e, template){  
+        template.view.parentView._templateInstance.changeLayout.get()("concentric") 
+    },
 
     // toggle add/remove edges feature
     'click #draw-edgehandles' : function(){
 
         // var edgeHandlesOn = Session.get('edgeHandlesOn') == "drawoff" ? "drawon" : "drawoff";
-        
         // var edgeHandlesOn = Session.get('edgeHandlesOn') == 'disable' ? 'enable' : 'disable';
+
         var edgeHandlesOn = Session.get('edgeHandlesOn') ? false : true ;
         Session.set('edgeHandlesOn', edgeHandlesOn);
         console.log(edgeHandlesOn);

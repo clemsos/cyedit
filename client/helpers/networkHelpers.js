@@ -50,6 +50,9 @@ Template.network.rendered = function () {
                 name: layoutName,
                 stop: savePositions // callback on layoutstop
             });
+        
+            console.log(layout);
+
             layout.run();
         }
 
