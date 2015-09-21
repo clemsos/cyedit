@@ -1,5 +1,5 @@
 Template.networkTools.onCreated(function(){
-    console.log(this.view.parentView().instance().changeLayout.get());
+    // console.log(this.view.parentView().instance().changeLayout.get());
 });
 
 Template.networkTools.events = {

@@ -31,6 +31,7 @@
                     </div>
                 </div>
             {{/if}}
+
             {{#if isNodes }}
                 <div class="form-inline">
                     <div class="form-group">
@@ -42,21 +43,29 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="latField">Latitude</label>
-                        <select class="form-control" name="latField" id="latField">
-                            {{#each getDataFields}}
-                                <option value="{{this }}">{{this }}</option>
-                            {{/each}}
-                        </select>
+                        <label class="add-geo-info">
+                            <input type="checkbox" checked="{{asLatLng}}" />
+                            Geo info
+                        </label>
                     </div>
-                    <div class="form-group">
-                        <label for="lngField">Longitude</label>
-                        <select class="form-control" name="lngField" id="lngField">
-                            {{#each getDataFields}}
-                                <option value="{{this }}">{{this }}</option>
-                            {{/each}}
-                        </select>
-                    </div>
+                    {{#if getAsLatLng}}
+                        <div class="form-group">
+                            <label for="latField">Latitude</label>
+                            <select class="form-control" name="latField" id="latField">
+                                {{#each getDataFields}}
+                                    <option value="{{this }}">{{this }}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="lngField">Longitude</label>
+                            <select class="form-control" name="lngField" id="lngField">
+                                {{#each getDataFields}}
+                                    <option value="{{this }}">{{this }}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    {{/if}}
                 </div>
             {{/if}}
             <div class="form-group">

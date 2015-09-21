@@ -16,6 +16,9 @@ Template.import.helpers({
     dataIsReady : function() {
         return Session.get('newLayerDataReady');
     },
+    getAsLatLng : function() {
+        return Session.get('asLatLng');
+    },
     getDataFields : function() {
         return Session.get('dataFields');
     }
@@ -56,8 +59,12 @@ Template.import.events = {
 
                 // keep data
                 Session.set('newLayerDataReady', true);
-                Session.set('dataFields', data.meta.fields);
+                Session.set('dataFields', data.meta.fields );
         }
+    },
+
+    "change .add-geo-info input": function (event) {
+      Session.set("asLatLng", event.target.checked);
     },
 
     "submit #importForm" : function(e) {
@@ -106,25 +113,33 @@ Template.import.events = {
         } else if (type == "nodes") {
 
             idField = e.target.idField.value;
-            latField =  e.target.latField.value;
-            lngField =  e.target.lngField.value;
 
-            // add nodes
-            if( !idField || !latField || !lngField || (latField == lngField) ) {
-                FlashMessages.sendError("Please define lat / lng / ID fields");
-                return;
+            // parse latitude / longitude
+            if(Session.get('asLatLng')) {
+                latField =  e.target.latField.value;
+                lngField =  e.target.lngField.value;
+
+                // add nodes
+                if( !idField || !latField || !lngField || (latField == lngField) ) {
+                    FlashMessages.sendError("Please define lat / lng / ID fields");
+                    return;
+                }
             }
         }
 
-        console.log("makeNode", makeNode);
-
         // parse data
         var parsedData = data.data.map(function  (d) {
-            if (type == "nodes") return makeNode(self.networkId, d[idField], 0, 0, d[latField], d[lngField], d)
-            else if (type == "edges") return makeEdge(self.networkId, d[srcField], d[targetField], d)
+
+            // parse geo coords
+            var lat = 0, lng = 0;
+            if (Session.get('asLatLng')) { lat = d[latField]; lng = d[lngField]; }
+
+            // parse data
+            if (type == "nodes" ) return makeNode(self.networkId, d[idField], lat, lng, 0, 0, d);
+            else if (type == "edges") return makeEdge(self.networkId, d[srcField], d[targetField], d);
         });
         
-        console.log(parsedData);
+        // console.log(parsedData);
 
         /// TODO : display loader
         if(type == "edges") {
